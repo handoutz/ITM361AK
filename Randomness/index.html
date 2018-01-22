@@ -1,15 +1,24 @@
-<!dOCTYPE html>
-
+<!DOCTYPE html>
 <html>
-
-<head>
-
-<title>Random Code to see if an IP Address will appear</title>
-
-<h1> Your Ip address is: 192.168.1.4 </h1>
-
-<?php> $ip=$_SERVER['REMOTE_ADDR']; <?>
-
-</head>
-
+  <head>
+    <script type="text/javascript" charset="utf-8" src="cordova.android.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ipaddress.js"></script>
+    <script>
+        function init(){
+            console.log("GOT AN ONLOAD!!!")
+            document.addEventListener("deviceready", deviceReady, true);
+        }
+        function deviceReady() {
+            console.log("Device ready");
+           var ipAddress = cordova.require("cordova/plugin/ipaddress");
+           ipAddress.get(function(address) {
+                console.log("IP Address = " + address);
+            }, function() {
+                console.log("error");
+            });
+        }
+    </script>
+  </head>
+  <body onload="init();">
+  </body>
 </html>
